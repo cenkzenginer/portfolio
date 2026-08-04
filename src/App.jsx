@@ -102,7 +102,7 @@ function App() {
             color: "#e2e8f0"
           }}
         >
-          Computer Engineering Student
+          Computer Engineer
         </h2>
 
         <p
