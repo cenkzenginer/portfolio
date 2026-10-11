@@ -1,0 +1,864 @@
+/* Cenk Zenginer — portfolio
+   Plain CSS, no build step. Dark scheme is the default; light follows
+   prefers-color-scheme. All colours are custom properties (contrast ratios
+   are listed in the README). */
+
+/* ---------- Fonts (self-hosted, latin + latin-ext) ---------- */
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-sans-latin-ext-400-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-sans-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-sans-latin-ext-500-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-sans-latin-500-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-sans-latin-ext-600-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-sans-latin-600-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-mono-latin-ext-400-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ---------- Tokens ---------- */
+
+:root {
+  color-scheme: dark;
+
+  --bg: #0e1016;            /* deep ink, faint cool tint */
+  --surface: #161922;       /* one step lighter */
+  --border: #2a2f3c;        /* hairlines (decorative) */
+  --border-strong: #6f778c; /* control and chip borders, >= 3:1 */
+  --text: #e8eaf0;
+  --text-muted: #aab0c0;
+  --accent: #b3a0ff;        /* violet: links, focus rings, small highlights */
+  --accent-ink: #0e1016;    /* text on an accent fill */
+  --tile: #ffffff;          /* neutral tile behind company logos */
+
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --step--1: 0.8125rem;
+  --step-0: clamp(1.0625rem, 1.02rem + 0.2vw, 1.125rem);
+  --step-1: clamp(1.1875rem, 1.12rem + 0.3vw, 1.3125rem);
+  --step-2: clamp(1.625rem, 1.35rem + 1.2vw, 2.25rem);
+  --step-3: clamp(2.5rem, 1.7rem + 3.6vw, 4.25rem);
+
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --section-gap: clamp(3.5rem, 8vw, 6.5rem);
+  --margin-col: 15rem;
+  --radius: 6px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+
+    --bg: #f7f6f2;            /* off-white paper */
+    --surface: #fffefb;
+    --border: #dddad1;
+    --border-strong: #767983;
+    --text: #16181d;
+    --text-muted: #4b5160;
+    --accent: #5a2bd0;        /* deeper violet */
+    --accent-ink: #ffffff;
+  }
+}
+
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: 1.5rem;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+p,
+li {
+  max-width: 68ch;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+h1 {
+  font-size: var(--step-3);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: var(--step-2);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: var(--step-1);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.wrap {
+  max-width: 70rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--text-muted);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 20;
+  padding: 0.6rem 1rem;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem 2rem;
+  padding-block: 0.75rem;
+}
+
+.wordmark {
+  display: inline-block;
+  padding-block: 0.5rem;
+  color: var(--text);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.wordmark:hover {
+  text-decoration: underline;
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1.5rem;
+}
+
+.site-nav li {
+  max-width: none;
+}
+
+.site-nav a:not(.button) {
+  display: inline-block;
+  padding-block: 0.5rem;
+  color: var(--text);
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.site-nav a:not(.button):hover {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+}
+
+/* Sticky only where the header is a single row; scroll-padding keeps
+   focused and targeted elements clear of it. */
+@media (min-width: 48em) {
+  html {
+    scroll-padding-top: 6rem;
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+}
+
+/* ---------- Buttons ---------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.5rem 1.1rem;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: var(--surface);
+  border-color: var(--text);
+}
+
+.button--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.button--primary:hover {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+
+.button--small {
+  min-height: 2.25rem;
+  padding: 0.3rem 0.85rem;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.button-row li {
+  max-width: none;
+}
+
+/* ---------- Chips and badges ---------- */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chips li,
+.badge {
+  max-width: none;
+  padding: 0.15rem 0.55rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.badge {
+  display: inline-block;
+  color: var(--text);
+  border-style: dashed;
+}
+
+/* ---------- Sections ---------- */
+
+.section {
+  padding-block: var(--section-gap);
+  border-top: 1px solid var(--border);
+}
+
+.section-head {
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.section-head h2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+}
+
+.section-num {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--accent);
+}
+
+/* Featured project: the label sits on its own line above the title. */
+.section-num--label {
+  flex-basis: 100%;
+}
+
+/* "Margin column" rows: mono label on the left, content on the right. */
+.row {
+  display: grid;
+  max-width: none;
+  gap: 0.75rem 2rem;
+  padding-block: 1.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.row:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.row:last-child {
+  padding-bottom: 0;
+}
+
+@media (min-width: 52em) {
+  .row {
+    grid-template-columns: var(--margin-col) minmax(0, 1fr);
+  }
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  padding-block: clamp(3rem, 8vw, 6rem) var(--section-gap);
+}
+
+.hero .wrap {
+  display: grid;
+  gap: 2.5rem 4rem;
+  align-items: center;
+}
+
+.hero h1 {
+  margin-block: 1rem 1.5rem;
+}
+
+.lead {
+  font-size: var(--step-1);
+  line-height: 1.5;
+  max-width: 34em;
+}
+
+.status {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-block: 1.5rem 2rem;
+  color: var(--text-muted);
+}
+
+.status::before {
+  content: "";
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--accent);
+}
+
+.portrait {
+  width: 100%;
+  max-width: 16rem;
+  aspect-ratio: 569 / 691;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+@media (min-width: 52em) {
+  .hero .wrap {
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 21rem);
+  }
+
+  .portrait {
+    max-width: none;
+  }
+}
+
+/* ---------- Featured project: Erişim ---------- */
+
+.feature-meta {
+  margin-top: 0.75rem;
+}
+
+.feature-body {
+  display: grid;
+  gap: 2rem 4rem;
+}
+
+.feature-body > div > * + h3 {
+  margin-top: 1.75rem;
+}
+
+.kicker {
+  margin-bottom: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--text-muted);
+}
+
+.scope-note {
+  align-self: start;
+  padding: 1.25rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+}
+
+@media (min-width: 52em) {
+  .feature-body {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  }
+}
+
+.pipeline-block {
+  margin-block: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.pipeline-block .kicker {
+  margin-bottom: 1.5rem;
+}
+
+/* Signature element: an ordered list drawn as a flow line with a node per
+   step. Vertical by default, horizontal on wide screens. */
+.pipeline {
+  margin-left: 0.3rem;
+}
+
+.pipeline li {
+  position: relative;
+  max-width: none;
+  padding: 0 0 1.75rem 1.75rem;
+  border-left: 1px solid var(--border-strong);
+}
+
+.pipeline li:last-child {
+  padding-bottom: 0;
+}
+
+/* node */
+.pipeline li::before {
+  content: "";
+  position: absolute;
+  top: 0.4rem;
+  left: -0.3125rem;
+  width: 0.5625rem;
+  height: 0.5625rem;
+  background: var(--accent);
+  outline: 4px solid var(--bg);
+}
+
+/* arrowhead at the end of each segment */
+.pipeline li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  bottom: 0.25rem;
+  left: -0.3125rem;
+  width: 0.5625rem;
+  height: 0.5625rem;
+  border-right: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--border-strong);
+  transform: rotate(45deg);
+}
+
+.step-num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.step-title {
+  display: block;
+  font-size: var(--step-1);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.step-meta {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+@media (min-width: 52em) {
+  .pipeline {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 0.3rem 0 0;
+  }
+
+  .pipeline li,
+  .pipeline li:last-child {
+    padding: 1.5rem 1.5rem 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--border-strong);
+  }
+
+  .pipeline li::before {
+    top: -0.3125rem;
+    left: 0;
+  }
+
+  .pipeline li:not(:last-child)::after {
+    top: -0.3125rem;
+    right: 0.75rem;
+    bottom: auto;
+    left: auto;
+    transform: rotate(-45deg);
+  }
+}
+
+.feature-foot {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* ---------- Project cards ---------- */
+
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 46em) {
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64em) {
+  .card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.card-shot {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-bottom: 1px solid var(--border);
+}
+
+/* A card with a screenshot spans the row on wide screens: image beside
+   the text. */
+@media (min-width: 46em) {
+  .card--wide {
+    grid-column: 1 / -1;
+    flex-direction: row;
+  }
+
+  /* Inset and uncropped, so the whole screenshot stays visible. */
+  .card--wide .card-shot {
+    align-self: flex-start;
+    width: 48%;
+    margin: 1.5rem 0 1.5rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+}
+
+.card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.75rem;
+}
+
+.card-head h3 {
+  flex-basis: 100%;
+}
+
+.highlights {
+  display: grid;
+  gap: 0.5rem;
+  color: var(--text-muted);
+}
+
+.highlights li {
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.highlights li::before {
+  content: "";
+  position: absolute;
+  top: 0.72em;
+  left: 0;
+  width: 0.5rem;
+  height: 1px;
+  background: var(--border-strong);
+}
+
+.card .chips {
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+/* ---------- Experience ---------- */
+
+.job-meta span {
+  display: block;
+}
+
+.job-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.logo-tile {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  padding: 0.4rem;
+  background: var(--tile);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.logo-tile img {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.role {
+  color: var(--text-muted);
+}
+
+/* ---------- Skills ---------- */
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.75rem;
+}
+
+.skill-list li {
+  max-width: none;
+}
+
+.skill-also {
+  margin-top: 0.5rem;
+  color: var(--text-muted);
+}
+
+/* ---------- Education ---------- */
+
+.row .chips {
+  margin-top: 1rem;
+}
+
+.cert-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.cert-list .mono {
+  display: block;
+}
+
+/* ---------- Contact ---------- */
+
+.contact-email {
+  display: inline-block;
+  margin-block: 1.5rem;
+  font-size: var(--step-2);
+  font-weight: 500;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.link-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 2rem;
+}
+
+.link-list a {
+  display: inline-block;
+  padding-block: 0.25rem;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  padding-block: 2.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.site-footer .wrap {
+  display: grid;
+  gap: 0.5rem;
+}
+
+/* ---------- Motion ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  a,
+  .button {
+    transition: color 120ms ease, background-color 120ms ease, border-color 120ms ease;
+  }
+}
