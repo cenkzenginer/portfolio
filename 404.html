@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found — Cenk Zenginer</title>
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0e1016" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+
+  <!-- GitHub Pages serves this file for missing URLs at any depth, where
+       relative paths would not resolve. So the styles are inline (same tokens
+       as assets/css/style.css, system fonts) and the links back to the site
+       are absolute. -->
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0e1016;
+      --surface: #161922;
+      --border: #2a2f3c;
+      --border-strong: #6f778c;
+      --text: #e8eaf0;
+      --text-muted: #aab0c0;
+      --accent: #b3a0ff;
+      --accent-ink: #0e1016;
+      --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        color-scheme: light;
+        --bg: #f7f6f2;
+        --surface: #fffefb;
+        --border: #dddad1;
+        --border-strong: #767983;
+        --text: #16181d;
+        --text-muted: #4b5160;
+        --accent: #5a2bd0;
+        --accent-ink: #ffffff;
+      }
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: clamp(1.0625rem, 1.02rem + 0.2vw, 1.125rem);
+      line-height: 1.6;
+    }
+
+    .wrap {
+      max-width: 70rem;
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+    }
+
+    header .wrap {
+      padding-block: 0.75rem;
+    }
+
+    .wordmark {
+      display: inline-block;
+      padding-block: 0.5rem;
+      color: var(--text);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .wordmark:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      padding-block: clamp(3.5rem, 10vw, 7rem);
+    }
+
+    .mono {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--accent);
+    }
+
+    h1 {
+      margin: 1rem 0 1.5rem;
+      font-size: clamp(2.5rem, 1.7rem + 3.6vw, 4.25rem);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      max-width: 68ch;
+      margin: 0;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.75rem;
+      margin-top: 2rem;
+      padding: 0.5rem 1.1rem;
+      background: var(--accent);
+      color: var(--accent-ink);
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background: var(--text);
+      border-color: var(--text);
+      color: var(--bg);
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .button {
+        transition: color 120ms ease, background-color 120ms ease, border-color 120ms ease;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a class="wordmark" href="https://cenkzenginer.github.io/portfolio/">Cenk Zenginer</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <p class="mono">404 — Not found</p>
+      <h1>Page not found</h1>
+      <p>There is nothing at this address. The page may have moved, or the link may be mistyped.</p>
+      <a class="button" href="https://cenkzenginer.github.io/portfolio/">Back to the portfolio</a>
+    </div>
+  </main>
+</body>
+</html>
